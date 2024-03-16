@@ -1,51 +1,67 @@
-export interface Teacher {
-  readonly firstName: string;
-  readonly lastName: string;
-  fullTimeEmployee: boolean;
-  yearsOfExperience?: number;
-  location: string;
-  [index:string]: any;
+export interface DirectorInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workDirectorTasks(): string;
 }
 
-export interface Directors extends Teacher {
-  numberOfReports: number;
+export interface TeacherInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workTeacherTasks(): string;
 }
 
-export interface printTeacherFunction {
-  (firstName: string, lastName: string): string;
-}
-
-export function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName[0]}. ${lastName}`;
-}
-
-export interface IStudentClassConstructor {
-  new (firstName: string, lastName: string): IStudentClass;
-}
-
-export interface IStudentClass {
-  workOnHomework(): string;
-  displayName(): string;
-}
-
-export class StudentClass implements IStudentClass {
-  private _firstName!: string;
-  private _lastName!: string;
-
-  constructor(firstName: string, lastName: string) {
-    this._firstName = firstName;
-    this._lastName = lastName;
+export class Director implements DirectorInterface {
+  workFromHome() {
+    return 'Working from home';
   }
 
-  workOnHomework() {
-    return 'Currently working';
+  getCoffeeBreak() {
+    return 'Getting a coffee break';
   }
 
-  displayName() {
-    return this._firstName;
+  workDirectorTasks() {
+    return 'Getting to director tasks';
   }
 }
 
-export function createStudent(ctor: IStudentClassConstructor, firstName: string, lastName: string): IStudentClass {
-  return new ctor(firstName, lastName);
+export class Teacher implements TeacherInterface {
+  workFromHome() {
+    return 'Cannot work from home';
+  }
+
+  getCoffeeBreak() {
+    return 'Cannot have a break';
+  }
+
+  workTeacherTasks() {
+    return 'Getting to work';
+  }
+}
+
+export function createEmployee(salary: (number | string)): (Director | Teacher) {
+  if (typeof salary === 'number' && salary < 500) {
+    return new Teacher();
+  }
+  return new Director();
+}
+export function isDirector(employee: (Director | Teacher)) {
+  return employee instanceof Director;
+}
+
+export function executeWork(employee: (Director | Teacher)) {
+  if (isDirector(employee)) {
+    return (employee as Director).workDirectorTasks();
+  }
+  return (employee as Teacher).workTeacherTasks();
+}
+
+export type Subjects = ('Math' | 'History');
+
+export function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  if (todayClass === 'History') {
+    return 'Teaching History';
+  }
 }
