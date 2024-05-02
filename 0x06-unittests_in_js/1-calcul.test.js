@@ -4,27 +4,27 @@ const calculateNumber = require('./1-calcul');
 describe('calculateNumber', () => {
   describe('type == "SUM"', () => {
     it('equal positive numbers', () => {
-      assert.strictEqual(calculateNumber('SUM', 5.3, 3.2), 8);
+      assert.strictEqual(calculateNumber('SUM', 2.0, 2.0), 4);
     });
 
     it('equal positive numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUM', 2.1, 1.8), 4);
+      assert.strictEqual(calculateNumber('SUM', 2.3, 1.8), 4);
     });
 
     it('equal negative numbers', () => {
-      assert.strictEqual(calculateNumber('SUM', -4.7, -2.3), -7);
+      assert.strictEqual(calculateNumber('SUM', -2.0, -2.0), -4);
     });
 
     it('equal negative numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUM', -3.5, -1.2), -5);
+      assert.strictEqual(calculateNumber('SUM', -2.3, -1.8), -4);
     });
 
     it('negative and positive numbers', () => {
-      assert.strictEqual(calculateNumber('SUM', -2.4, 3.7), 1);
+      assert.strictEqual(calculateNumber('SUM', -2.0, 2.0), 0);
     });
 
     it('positive and negative numbers', () => {
-      assert.strictEqual(calculateNumber('SUM', 7.6, -2.5), 5);
+      assert.strictEqual(calculateNumber('SUM', 2.0, -2.0), 0);
     });
 
     it('0 and 0', () => {
@@ -34,11 +34,11 @@ describe('calculateNumber', () => {
 
   describe('type == "SUBTRACT"', () => {
     it('equal positive numbers', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', 8.5, 3.5), 5);
+      assert.strictEqual(calculateNumber('SUBTRACT', 2.0, 2.0), 0);
     });
 
     it('equal positive numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', 6.7, 1.8), 4.9);
+      assert.strictEqual(calculateNumber('SUBTRACT', 2.3, 1.8), 0);
     });
 
     it('equal negative numbers', () => {
@@ -46,15 +46,15 @@ describe('calculateNumber', () => {
     });
 
     it('equal negative numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', -5.5, -3.5), -2);
+      assert.strictEqual(calculateNumber('SUBTRACT', -2.3, -1.8), 0);
     });
 
     it('negative and positive numbers', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', -3.4, 2.2), -5.6);
+      assert.strictEqual(calculateNumber('SUBTRACT', -2.0, 2.0), -4.0);
     });
 
     it('positive and negative numbers', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', 10.5, -3.2), 13.7);
+      assert.strictEqual(calculateNumber('SUBTRACT', 2.0, -2.0), 4.0);
     });
 
     it('0 and 0', () => {
@@ -64,7 +64,7 @@ describe('calculateNumber', () => {
 
   describe('type == "DIVIDE"', () => {
     it('positive numbers', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 8.0, 2.0), 4);
+      assert.strictEqual(calculateNumber('DIVIDE', 8.0, 2.0), 4.0);
     });
 
     it('numbers with different signs', () => {
